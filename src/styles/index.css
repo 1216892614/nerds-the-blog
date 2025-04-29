@@ -1,0 +1,52 @@
+@import "./lens-flare.css";
+@import "./crt-display.css";
+
+.drop-voxel-shadow {
+    filter: drop-shadow(1px 0.5px 0.5px var(--color-red-500))
+        drop-shadow(-1px 0.5px 0.5px var(--color-blue-500));
+}
+
+@keyframes neonQuickFlicker {
+    0%,
+    7%,
+    9%,
+    11%,
+    33%,
+    36%,
+    95%,
+    100% {
+        opacity: 1;
+    }
+    8%,
+    10%,
+    34%,
+    35%,
+    96%,
+    97% {
+        opacity: 0.8;
+    }
+    50%,
+    60% {
+        opacity: 0.9;
+    }
+    51%,
+    59% {
+        opacity: 0.8;
+    }
+}
+
+/* Buzzing variant for elements that need more frequent flickering */
+.neon-buzz {
+    opacity: 1;
+    animation: neonQuickFlicker 5s infinite;
+}
+
+.distortion {
+    filter: url(#distort-filter-header-twitter-link);
+}
+
+.distortion-hover {
+    &:hover {
+        filter: url(#distort-filter-header-twitter-link);
+    }
+}
