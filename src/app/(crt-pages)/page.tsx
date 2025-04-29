@@ -1,3 +1,5 @@
+"use client";
+
 import FillTrans from "@/components/FillTrans";
 import BladeRunner from "@/components/HomePageComps/BladeRunner";
 import Hero from "@/components/HomePageComps/Hero";
@@ -14,10 +16,19 @@ export default function Home() {
                 className={{ scrollContainer: "-mt-52" }}
                 itemHeight={96}
                 itemWidth={96}
-                item={
-                    <div className="size-24 bg-base-200 flex justify-center items-center">
-                        <X className="size-6 text-amber-200" />
-                    </div>
+                item={({ x, y, xLen, yLen }) =>
+                    y === Math.round(yLen / 2) && x === Math.round(xLen / 2) ? (
+                        <div className="size-24 bg-base-200 flex justify-center items-center">
+                            <X
+                                className="size-6 text-amber-200"
+                                weight="fill"
+                            />
+                        </div>
+                    ) : (
+                        <div className="size-24 bg-base-200 flex justify-center items-center">
+                            <X className="size-6 text-amber-200" />
+                        </div>
+                    )
                 }
                 startFrom={
                     <BladeRunner

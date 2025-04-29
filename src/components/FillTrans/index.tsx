@@ -14,7 +14,12 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export type FillTransProps = {
-    item: React.ReactNode;
+    item: (args: {
+        x: number;
+        y: number;
+        xLen: number;
+        yLen: number;
+    }) => React.ReactNode;
     endTo: React.ReactNode;
     startFrom: React.ReactNode;
     itemWidth: number;
@@ -53,7 +58,7 @@ export default function FillTrans({
         );
     }, [scrollY, scrollRange]);
 
-    const [{ rowRepeat, colRepeat }, setRepeat] = useState({
+    const [{ rowRepeat: yLen, colRepeat: xLen }, setRepeat] = useState({
         rowRepeat: 30,
         colRepeat: 30,
     });
@@ -114,31 +119,40 @@ export default function FillTrans({
                         className.gridContainer
                     )}
                     style={{
-                        gridTemplateRows: `repeat(${rowRepeat}, 1fr)`,
-                        gridTemplateColumns: `repeat(${colRepeat}, 1fr)`,
+                        gridTemplateRows: `repeat(${yLen}, 1fr)`,
+                        gridTemplateColumns: `repeat(${xLen}, 1fr)`,
                     }}
                 >
-                    {range(0, rowRepeat * colRepeat).map((idx, _i, arr) => (
-                        <motion.div
-                            className={classNames("z-10", className.item)}
-                            style={{
-                                opacity: transformValue(() => {
-                                    const p = progress.get();
+                    {range(0, yLen).map((y) =>
+                        range(0, xLen).map((x) => (
+                            <motion.div
+                                className={classNames("z-10", className.item)}
+                                style={{
+                                    opacity: transformValue(() => {
+                                        const p = progress.get();
 
-                                    if (p < (arr.length - idx) / arr.length / 2)
-                                        return 0;
+                                        const len = yLen * xLen;
+                                        const idx = y * xLen + x;
 
-                                    if (p > (1 - idx / arr.length) / 2 + 0.5)
-                                        return 0;
+                                        if (p < (len - idx) / len / 2) return 0;
 
-                                    return 1;
-                                }),
-                            }}
-                            key={idx}
-                        >
-                            {item}
-                        </motion.div>
-                    ))}
+                                        if (p > (1 - idx / len) / 2 + 0.5)
+                                            return 0;
+
+                                        return 1;
+                                    }),
+                                }}
+                                key={`${x}-${y}`}
+                            >
+                                {item({
+                                    xLen,
+                                    yLen,
+                                    x,
+                                    y,
+                                })}
+                            </motion.div>
+                        ))
+                    )}
 
                     <motion.div
                         style={{
