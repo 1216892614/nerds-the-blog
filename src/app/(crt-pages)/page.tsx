@@ -180,7 +180,7 @@ export default function Home() {
                         className={classNames(
                             "flex flex-col items-center justify-center",
                             "-translate-y-20 w-screen h-screen gap-2",
-                            "bg-[#306158] text-[#EBBB4E]"
+                            "bg-teal-800 text-amber-300"
                         )}
                     >
                         <p
@@ -201,7 +201,7 @@ export default function Home() {
                 }
             />
 
-            <div className="w-full h-screen bg-[#306158] -mt-40" />
+            <div className="w-full h-screen bg-teal-800 -mt-40" />
         </>
     );
 }
