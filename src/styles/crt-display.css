@@ -56,7 +56,7 @@
     background-color: var(--color-base-200);
     left: 50%;
     top: 50%;
-    transform: translate3d(-52%, -50%, 2rem) rotateX(2deg) rotateY(-2deg)
+    transform: translate3d(-52%, -50%, 2rem) rotateX(1deg) rotateY(-2deg)
         rotateZ(1deg);
     will-change: transform;
     /* filter: url(#SphereMapTest); */

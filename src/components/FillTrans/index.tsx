@@ -7,9 +7,9 @@ import {
     transformValue,
     useScroll,
     motion,
-    useTransform,
     useMotionValue,
     transform,
+    useInView,
 } from "motion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
@@ -33,8 +33,6 @@ export type FillTransProps = {
     };
 };
 
-const vhHeight = 4;
-
 export default function FillTrans({
     item,
     endTo,
@@ -47,16 +45,34 @@ export default function FillTrans({
     const { scrollY } = useScroll({ container: mainContainerRef });
 
     const topRef = useRef<HTMLDivElement>(null);
-
-    const [scrollRange, setScrollRange] = useState([0, 9999]);
+    const viewRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(viewRef);
 
     const progress = useMotionValue(0);
 
     useEffect(() => {
-        return scrollY.on("change", (v) =>
-            progress.jump(transform(v, scrollRange, [0, 1]))
-        );
-    }, [scrollY, scrollRange]);
+        if (!isInView) return;
+
+        return scrollY.on("change", (v) => {
+            const topEl = topRef.current;
+            const main = mainContainerRef.current;
+
+            if (!topEl || !main || typeof window === "undefined") return;
+
+            const { top: elTop, height } = topEl.getBoundingClientRect();
+            const { top: mainTop } = main.getBoundingClientRect();
+
+            const top = elTop - mainTop + main.scrollTop - window.innerHeight;
+
+            const to = transform(
+                v,
+                [top, top + height - window.innerHeight],
+                [0, 1]
+            );
+
+            progress.jump(to);
+        });
+    }, [scrollY, mainContainerRef, isInView]);
 
     const [{ rowRepeat: yLen, colRepeat: xLen }, setRepeat] = useState({
         rowRepeat: 30,
@@ -64,20 +80,7 @@ export default function FillTrans({
     });
 
     const sync = useCallback(() => {
-        const topEl = topRef.current;
-        const main = mainContainerRef.current;
-
-        if (!topEl || !main || typeof window === "undefined") return;
-
-        const { top: elTop } = topEl.getBoundingClientRect();
-        const { top: mainTop } = main.getBoundingClientRect();
-
-        const top = elTop - mainTop - main.clientHeight + main.scrollTop;
-
-        setScrollRange([
-            top + main.clientHeight,
-            top + window.innerHeight * vhHeight - main.clientHeight / 2,
-        ]);
+        if (typeof window === "undefined") return;
 
         setRepeat({
             rowRepeat: Math.round(window.innerHeight / itemHeight) + 1,
@@ -92,27 +95,26 @@ export default function FillTrans({
 
         const ob = new ResizeObserver(sync);
 
-        setTimeout(sync, 500);
+        sync();
 
         ob.observe(main);
 
         return () => {
             ob.disconnect();
         };
-    }, [sync]);
+    }, [sync, isInView]);
 
     return (
         <>
             <div
+                ref={topRef}
                 className={classNames(
-                    "w-full relative",
+                    "w-full h-[400vh] relative",
                     className.scrollContainer
                 )}
-                style={{ height: `${vhHeight}00vh` }}
             >
-                <div ref={topRef} />
-
                 <div
+                    ref={viewRef}
                     className={classNames(
                         "grid sticky top-0 w-full min-h-screen",
                         "justify-center content-center pointer-events-none",
@@ -126,6 +128,7 @@ export default function FillTrans({
                     {range(0, yLen).map((y) =>
                         range(0, xLen).map((x) => (
                             <motion.div
+                                initial={{ opacity: 0 }}
                                 className={classNames("z-10", className.item)}
                                 style={{
                                     opacity: transformValue(() => {
@@ -155,6 +158,7 @@ export default function FillTrans({
                     )}
 
                     <motion.div
+                        initial={{ opacity: 0, pointerEvents: "none" }}
                         style={{
                             opacity: transformValue(() =>
                                 progress.get() < 0.5 ? 0 : 1
@@ -172,6 +176,7 @@ export default function FillTrans({
                     </motion.div>
 
                     <motion.div
+                        initial={{ opacity: 1, pointerEvents: "auto" }}
                         style={{
                             opacity: transformValue(() =>
                                 progress.get() >= 0.5 ? 0 : 1

@@ -37,7 +37,8 @@ export default async function layout({
                     firaCode.variable,
                     IbmPlexMono.variable,
                     "antialiased crt-container",
-                    "text-base-content pt-20"
+                    "text-base-content py-10 gap-12",
+                    "flex flex-col [&>*]:shrink-0 items-start"
                 )}
             >
                 {children}

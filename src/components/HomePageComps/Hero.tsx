@@ -19,29 +19,30 @@ const Hero = () => {
     );
 
     const lensFlareOpacity = useTransform(scrollY, scrollRange, [1, 0]);
+    const opacity = useTransform(scrollY, scrollRange, [1, 0.5]);
 
-    const lensFlareW = useTransform(scrollY, scrollRange, ["100vw", "0vw"]);
-
-    const lensFlareH = useTransform(scrollY, scrollRange, ["100vw", "0vw"]);
+    const lensFlareR = useTransform(scrollY, scrollRange, ["100vh", "0vh"]);
 
     return (
-        <section
+        <motion.section
             className={classNames(
-                "w-full h-screen neon-buzz font-[--font-geist-sans]",
+                "w-screen h-screen neon-buzz font-[--font-geist-sans]",
                 "relative flex flex-col items-center justify-center gap-4"
             )}
         >
-            <NerdsTheBlogLogo
-                className={classNames(
-                    "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl",
-                    "drop-voxel-shadow"
-                )}
-            />
+            <motion.div style={{ opacity }}>
+                <NerdsTheBlogLogo
+                    className={classNames(
+                        "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl",
+                        "drop-voxel-shadow -translate-y-10"
+                    )}
+                />
+            </motion.div>
 
-            <nav>
+            <motion.nav style={{ opacity }}>
                 <ul
                     className={classNames(
-                        "flex gap-4",
+                        "flex gap-4 -translate-y-10",
                         "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl"
                     )}
                 >
@@ -75,13 +76,13 @@ const Hero = () => {
                         </Link>
                     </li>
                 </ul>
-            </nav>
+            </motion.nav>
 
             <motion.div
                 style={{
                     opacity: lensFlareOpacity,
-                    width: lensFlareW,
-                    height: lensFlareH,
+                    width: lensFlareR,
+                    height: lensFlareR,
                 }}
                 className={classNames(
                     "fixed lens-flare pointer-events-none",
@@ -101,7 +102,7 @@ const Hero = () => {
                     ></motion.div>
                 </div>
             </motion.div>
-        </section>
+        </motion.section>
     );
 };
 

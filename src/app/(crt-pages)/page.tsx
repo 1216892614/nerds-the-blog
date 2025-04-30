@@ -3,15 +3,15 @@
 import FillTrans from "@/components/FillTrans";
 import BladeRunner from "@/components/HomePageComps/BladeRunner";
 import Hero from "@/components/HomePageComps/Hero";
-import { X } from "@phosphor-icons/react/dist/ssr";
+import { ArrowSquareUpRight, File } from "@phosphor-icons/react";
+import { ArrowUpRight, X } from "@phosphor-icons/react/dist/ssr";
 import classNames from "classnames";
+import Link from "next/link";
 import React from "react";
 
 export default function Home() {
     return (
         <>
-            <Hero />
-
             <FillTrans
                 className={{ scrollContainer: "-mt-52" }}
                 itemHeight={96}
@@ -30,48 +30,7 @@ export default function Home() {
                         </div>
                     )
                 }
-                startFrom={
-                    <BladeRunner
-                        cfg={{
-                            inlineRange: 100,
-                            inlineDelay: 0,
-                            offset: -100,
-                        }}
-                        className={{
-                            container: classNames(
-                                "mx-auto drop-voxel-shadow text-amber-200",
-                                "text-lg md:text-xl lg:text-2xl xl:text-3xl",
-                                "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl",
-                                "-translate-y-24"
-                            ),
-                        }}
-                        contents={[
-                            ["雨季..."],
-                            ["异常潮湿的", "时节..."],
-                            [<br />],
-                            [
-                                "正是在那阴雨绵绵的日子里，",
-                                "供奉夜之女神拉特莉的神庙中传出了祈祷。",
-                            ],
-                            [
-                                "祈祷并非来自指尖拨动的绳结或不断旋转的经筒，",
-                                "而是源于神庙中一台巨大的祈祷机。",
-                            ],
-                            [<br />],
-                            [
-                                "高频的祈祷信号直指苍穹，",
-                                "穿过大气层，",
-                                "进入了被称作“诸神之桥”的金色祥云。",
-                            ],
-                            [
-                                "祥云环绕着整个世界，夜间宛若青铜的虹彩，",
-                                "每到正午时分，火红的太阳会在这里化作一团橙色。",
-                            ],
-                            [<br />],
-                            ["---《光明王》(美)罗杰·泽拉兹尼"],
-                        ]}
-                    />
-                }
+                startFrom={<Hero />}
                 endTo={
                     <div
                         className={classNames(
@@ -93,11 +52,163 @@ export default function Home() {
                                 "text-lg md:text-xl lg:text-2xl xl:text-3xl md:font-bold"
                             )}
                         >
-                            1138, 4EB位于7809层
+                            袭春寒因它在晚冬突然出现而得名
                         </h3>
                     </div>
                 }
             />
+
+            <BladeRunner
+                className={{
+                    container: classNames(
+                        "mx-auto drop-voxel-shadow text-amber-200",
+                        "text-lg md:text-xl lg:text-2xl xl:text-3xl",
+                        "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl mb-[50vh]",
+                        "text-center"
+                    ),
+                }}
+                contents={[
+                    ["这里存放的是", "我之前写或者"],
+                    ["正在写的一些", "随笔."],
+                ]}
+            />
+
+            <BladeRunner
+                className={{
+                    container: classNames(
+                        "mx-auto drop-voxel-shadow text-amber-200",
+                        "text-lg md:text-xl lg:text-2xl xl:text-3xl",
+                        "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl mb-20"
+                    ),
+                }}
+                contents={[
+                    ["雪落成的夜里, ", "冷的没有一点声音."],
+                    [<br />],
+                    [
+                        "袭春寒因它在晚冬突然出现而得名, ",
+                        "漠北狂暴的冰元素们游荡了几乎一整个冬天, ",
+                        "终于在兀山山脉的迷踪里走通了前往锡萨克盆地的路, ",
+                        "带着几乎力竭的寒流浸没了大小淮岭里的无数生灵.",
+                    ],
+                    [<br />],
+                    [
+                        "就像过去一样, ",
+                        "锡萨克人在这个冬天经历了太多的磨难, ",
+                        "但只有挺过了开春前最后的夜, ",
+                        "才能迎来那真正的黎明...",
+                    ],
+                    [<br />],
+                    ["---", " 春日远征, 2025.4.30", ,],
+                    [
+                        <Link
+                            href="/"
+                            className="w-full btn distortion-hover mt-5"
+                        >
+                            <ArrowUpRight className="size-10" />
+                        </Link>,
+                    ],
+                ]}
+            />
+
+            <BladeRunner
+                className={{
+                    container: classNames(
+                        "mx-auto drop-voxel-shadow text-amber-200",
+                        "text-lg md:text-xl lg:text-2xl xl:text-3xl",
+                        "w-1/2 sm:w-sm md:w-md lg:w-lg xl:w-xl mb-20"
+                    ),
+                }}
+                contents={[
+                    ["2016年 ", "投稿于科幻者之家."],
+                    [<br />],
+                    ["当我和你谈起Tenuma时，", "那是洛杉矶的1991年12月24日。"],
+                    [<br />],
+                    ["“该死的，这玩意怎么用？", "或者说他到底能不能用？”"],
+                    [<br />],
+                    [
+                        "在那边暴躁踢着加油机的海博最终还是让油枪流出了粘稠的柴油。",
+                        "HUMMER H1在喝到这堆不明液体后愤怒发出痛苦的嘶吼。",
+                    ],
+                    [<br />],
+                    ["“哈，这也是人类的一大步。”"],
+                    [<br />],
+                    [
+                        "“我去商店里看了看，拿了这些。”",
+                        "我把东西放到车上，打开钱包，",
+                        "数了数为数不多的零钱，",
+                        "顺便看了一眼萨拉的照片...",
+                    ],
+                    [<br />],
+                    ["---", <> 与暴风雪同行, 2025.4.30</>, ,],
+                    [
+                        <Link
+                            href="/"
+                            className="w-full btn distortion-hover mt-5"
+                        >
+                            <ArrowUpRight className="size-10" />
+                        </Link>,
+                    ],
+                ]}
+            />
+
+            <FillTrans
+                className={{ scrollContainer: "-mt-52" }}
+                itemHeight={96}
+                itemWidth={96}
+                item={({ x, y }) =>
+                    x % 3 === 0 && y % 3 === 0 ? (
+                        <div className="size-24 bg-base-200 flex justify-center items-center">
+                            <File
+                                className="size-6 text-amber-200"
+                                weight="fill"
+                            />
+                        </div>
+                    ) : (
+                        <div className="size-24 bg-base-200 flex justify-center items-center">
+                            <File className="size-6 text-amber-200" />
+                        </div>
+                    )
+                }
+                startFrom={
+                    <Link
+                        href="/"
+                        className={classNames(
+                            "btn btn-xl btn-primary distortion-hover mt-5",
+                            "-translate-y-20"
+                        )}
+                    >
+                        查看更多
+                        <ArrowSquareUpRight weight="fill" className="size-10" />
+                    </Link>
+                }
+                endTo={
+                    <div
+                        className={classNames(
+                            "flex flex-col gap-2 items-center",
+                            "-translate-y-20"
+                        )}
+                    >
+                        <p
+                            className={classNames(
+                                "text-info",
+                                "text-md md:text-lg lg:text-xl xl:text-2xl"
+                            )}
+                        >
+                            PART 2
+                        </p>
+                        <h3
+                            className={classNames(
+                                "text-warning",
+                                "text-lg md:text-xl lg:text-2xl xl:text-3xl md:font-bold"
+                            )}
+                        >
+                            他们随意塑造我们的记忆, 目的是寻找人性
+                        </h3>
+                    </div>
+                }
+            />
+
+            <div className="w-full h-screen" />
         </>
     );
 }

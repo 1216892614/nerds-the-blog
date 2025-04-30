@@ -15,7 +15,7 @@ import classNames from "classnames";
 export default function BladeRunner({
     contents,
     className,
-    cfg: { offset = 100, inlineDelay = 10, inlineRange = 200 } = {},
+    cfg: { offset = 0, inlineDelay = 10, inlineRange = 200 } = {},
     ...props
 }: Omit<React.ComponentProps<"div">, "className"> & {
     contents: React.ReactNode[][];
@@ -42,11 +42,16 @@ export default function BladeRunner({
 
             if (!el || !main || !inView) return;
 
-            const { top: elTop } = el.getBoundingClientRect();
+            const { top: elTop, height } = el.getBoundingClientRect();
             const { top: mainTop } = main.getBoundingClientRect();
 
             const bottom =
-                elTop - mainTop - main.clientHeight + main.scrollTop + offset;
+                elTop -
+                mainTop -
+                main.clientHeight +
+                main.scrollTop -
+                height +
+                offset;
 
             return transformValue(() =>
                 transform(
