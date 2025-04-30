@@ -109,7 +109,7 @@ export default function FillTrans({
             <div
                 ref={topRef}
                 className={classNames(
-                    "w-full h-[400vh] relative",
+                    "w-full h-[400vh] relative pointer-events-none",
                     className.scrollContainer
                 )}
             >
@@ -117,7 +117,7 @@ export default function FillTrans({
                     ref={viewRef}
                     className={classNames(
                         "grid sticky top-0 w-full min-h-screen",
-                        "justify-center content-center pointer-events-none",
+                        "justify-center content-center",
                         className.gridContainer
                     )}
                     style={{

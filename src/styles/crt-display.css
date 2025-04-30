@@ -15,12 +15,10 @@
         left: 0;
         top: 0;
 
-        background-image: linear-gradient(
-            to bottom,
-            var(--color-base-200) 0%,
-            transparent 20%,
-            transparent 80%,
-            var(--color-base-200) 100%
+        background-image: radial-gradient(
+            ellipse at center,
+            transparent 90%,
+            var(--color-base-200) 110%
         );
         background-size: 100% 100%;
         background-position: center center;

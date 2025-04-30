@@ -13,7 +13,6 @@ export default function Home() {
     return (
         <>
             <FillTrans
-                className={{ scrollContainer: "-mt-52" }}
                 itemHeight={96}
                 itemWidth={96}
                 item={({ x, y, xLen, yLen }) =>
@@ -34,8 +33,8 @@ export default function Home() {
                 endTo={
                     <div
                         className={classNames(
-                            "flex flex-col gap-2 items-center",
-                            "-translate-y-20"
+                            "flex flex-col items-center justify-center",
+                            "-translate-y-20 w-screen h-screen gap-2"
                         )}
                     >
                         <p
@@ -99,11 +98,9 @@ export default function Home() {
                     ],
                     [<br />],
                     ["---", " 春日远征, 2025.4.30", ,],
+                    [<br />],
                     [
-                        <Link
-                            href="/"
-                            className="w-full btn distortion-hover mt-5"
-                        >
+                        <Link href="/" className="w-full btn distortion-hover">
                             <ArrowUpRight className="size-10" />
                         </Link>,
                     ],
@@ -140,11 +137,9 @@ export default function Home() {
                     ],
                     [<br />],
                     ["---", <> 与暴风雪同行, 2025.4.30</>, ,],
+                    [<br />],
                     [
-                        <Link
-                            href="/"
-                            className="w-full btn distortion-hover mt-5"
-                        >
+                        <Link href="/" className="w-full btn distortion-hover">
                             <ArrowUpRight className="size-10" />
                         </Link>,
                     ],
@@ -152,11 +147,10 @@ export default function Home() {
             />
 
             <FillTrans
-                className={{ scrollContainer: "-mt-52" }}
                 itemHeight={96}
                 itemWidth={96}
                 item={({ x, y }) =>
-                    x % 3 === 0 && y % 3 === 0 ? (
+                    x % 2 === 0 && y % 2 === 0 ? (
                         <div className="size-24 bg-base-200 flex justify-center items-center">
                             <File
                                 className="size-6 text-amber-200"
@@ -173,7 +167,7 @@ export default function Home() {
                     <Link
                         href="/"
                         className={classNames(
-                            "btn btn-xl btn-primary distortion-hover mt-5",
+                            "btn btn-xl btn-primary distortion-hover",
                             "-translate-y-20"
                         )}
                     >
@@ -184,13 +178,13 @@ export default function Home() {
                 endTo={
                     <div
                         className={classNames(
-                            "flex flex-col gap-2 items-center",
-                            "-translate-y-20"
+                            "flex flex-col items-center justify-center",
+                            "-translate-y-20 w-screen h-screen gap-2",
+                            "bg-[#306158] text-[#EBBB4E]"
                         )}
                     >
                         <p
                             className={classNames(
-                                "text-info",
                                 "text-md md:text-lg lg:text-xl xl:text-2xl"
                             )}
                         >
@@ -198,7 +192,6 @@ export default function Home() {
                         </p>
                         <h3
                             className={classNames(
-                                "text-warning",
                                 "text-lg md:text-xl lg:text-2xl xl:text-3xl md:font-bold"
                             )}
                         >
@@ -208,7 +201,7 @@ export default function Home() {
                 }
             />
 
-            <div className="w-full h-screen" />
+            <div className="w-full h-screen bg-[#306158] -mt-40" />
         </>
     );
 }
