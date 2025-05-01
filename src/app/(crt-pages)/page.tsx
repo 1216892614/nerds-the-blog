@@ -3,6 +3,7 @@
 import FillTrans from "@/components/FillTrans";
 import BladeRunner from "@/components/HomePageComps/BladeRunner";
 import Hero from "@/components/HomePageComps/Hero";
+import SecondScreen from "@/components/HomePageComps/SecondScreen";
 import { ArrowSquareUpRight, File } from "@phosphor-icons/react";
 import { ArrowUpRight, X } from "@phosphor-icons/react/dist/ssr";
 import classNames from "classnames";
@@ -12,6 +13,10 @@ import React from "react";
 export default function Home() {
     return (
         <>
+            <Hero />
+
+            <SecondScreen />
+
             <FillTrans
                 itemHeight={96}
                 itemWidth={96}
@@ -29,7 +34,28 @@ export default function Home() {
                         </div>
                     )
                 }
-                startFrom={<Hero />}
+                startFrom={
+                    <div
+                        className={classNames(
+                            "flex flex-col items-center justify-center",
+                            "-translate-y-20 w-screen h-screen gap-2",
+                            "bg-accent"
+                        )}
+                    >
+                        <Link
+                            href="/"
+                            className={classNames(
+                                "btn btn-xl distortion-hover"
+                            )}
+                        >
+                            查看更多
+                            <ArrowSquareUpRight
+                                weight="fill"
+                                className="size-10"
+                            />
+                        </Link>
+                    </div>
+                }
                 endTo={
                     <div
                         className={classNames(

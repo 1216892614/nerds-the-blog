@@ -59,7 +59,7 @@
     will-change: transform;
     /* filter: url(#SphereMapTest); */
     height: 110vh;
-    width: 120vw;
+    width: 130vw;
     overflow-x: hidden;
     overflow-y: auto;
 }

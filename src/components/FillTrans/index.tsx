@@ -84,7 +84,7 @@ export default function FillTrans({
 
         setRepeat({
             rowRepeat: Math.round(window.innerHeight / itemHeight) + 1,
-            colRepeat: Math.round((window.innerWidth / itemWidth) * 1.2) + 1,
+            colRepeat: Math.round((window.innerWidth / itemWidth) * 1.3) + 1,
         });
     }, [mainContainerRef]);
 
